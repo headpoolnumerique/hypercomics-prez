@@ -11,7 +11,7 @@
 </header>
 <figure>
 {% for asset in item.data.assets %}
-  <img src="{{"/images/" | url}}{{asset}}" alt="" />
+  <img src="{{"images/" | url}}{{asset}}" alt="" />
 {% endfor %}
 </figure>
 {% include "./next.njk" %}
