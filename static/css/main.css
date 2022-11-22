@@ -1,15 +1,24 @@
 @import url(fonts.css);
 
 :root {
-  --font-comics: 'Kalam';
-  --color-body: blue;
-  --font-sans: 'Epilogue';
-  --color-accent: grey;
+  --font-comics: 'recursive';
+  --color-body: orange;
+  --font-sans: 'recursive';
+  --color-accent: red;
   --color-text: #2f1e2d;
   --ju-color: orange;
   --clem-color: purple;
-}
 
+  --mono: 'MONO' 0;
+  /* Monospace: Sans (natural-width) or Mono (fixed-width) */
+  --casl: 'CASL' 1;
+  /* Casual: Linear to Casual */
+  --wght: 'wght' 400;
+  /* Weight: Light to ExtraBlack; usually set with `font-weight` */
+  --slnt: 'slnt' 0;
+  /* Slant: 0 to -15 degrees, auto cursive at -14 */
+  --CRSV: 'CRSV' 0.5;
+}
 body {
   color: var(--color-text);
   margin: 0;
@@ -18,12 +27,15 @@ body {
   display: grid;
   max-height: 100vh;
   grid-template-rows: [top] 1fr [menu] 4em [end];
+  /* font-variation-settings: var(--mono), var(--casl), var(--wght), var(--slnt),  var(--CRSV); */
+  font-variation-settings: 'wght' 400, 'CASL' 1; /* font-weight: 800; */
 }
 
 h1,
 h2,
 h3 {
-  font-weight: 800;
+  /* --wght: 800; */
+  font-variation-settings: 'wght' 700, 'CASL' 1; /* font-weight: 800; */
 }
 
 .menubar {
@@ -149,7 +161,7 @@ h4 {
   display: inline-block;
   padding: 0.4em 1ch;
   height: max-content;
-  grid-row: 5 / span 4;
+  grid-row: 2 / span 4;
   background: white;
   grid-column: 11 / span 10;
 }
@@ -162,7 +174,7 @@ h4 {
 .talk iframe,
 .talk .screenshot {
   box-shadow: 0 0 0 10px white;
-  width: 100%;
+  width: 90%;
   height: 90%;
   padding: 0;
   grid-column: 5 / 23;
@@ -172,10 +184,10 @@ h4 {
   z-index: 1;
 }
 
-.talk.demo iframe,
-.talk.demo .screenshot {
-  box-shadow: 0 0 0 10px white;
-  width: 100%;
+.demo iframe,
+.demo .screenshot {
+  /* box-shadow: 0 0 0 10px white; */
+  width: 99%;
   height: 90%;
   padding: 0;
   grid-column: 5 / 23;
@@ -187,8 +199,7 @@ h4 {
 
 .demo .screenshot::after {
   content: '' attr(data-width) 'px × ' attr(data-height) 'px';
-  /* position: absolute; */
-  text-align: right;
+  text-align: center;
   width: 100%;
   margin: 0;
   display: block;
@@ -229,39 +240,6 @@ iframe:hover {
 }
 
 /* show hide stuff with target only */
-.talk {
-  display: none;
-  font-style: italic;
-  opacity: 0;
-}
-
-.talk.textBlock {
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-.talk.textBlock main {
-  font-size: 1em;
-  margin: auto;
-  width: clamp(80%, 50vw, 1000px);
-}
-
-.talk.textBlock main p {
-  max-width: 50ch;
-}
-.talk.textBlock:target {
-  display: flex;
-}
-.talk:target {
-  display: grid;
-  opacity: 1;
-}
-
-.talk.textBlock > * {
-  margin: 0;
-}
 
 .prevnext {
   display: block;
@@ -319,42 +297,23 @@ a:active {
   color: var(--color-accent);
 }
 
-.intro h1 {
-  font-size: 3em;
-  margin-bottom: 0.3em;
-  width: max-content;
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-decoration-thickness: 5px;
-  position: relative;
+:is(.intro, .textBlock) {
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  height: 90vh;
 }
 
-.intro h1::after {
-  content: '';
-  background: currentColor;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  bottom: -30px;
-  right: 20%;
-  clip-path: polygon(0% 100%, 100% 100%, 45% 100%);
+:is(.intro, .textBlock):target {
+  display: flex;
 }
 
-.intro .logo {
-  display: block;
-  position: absolute;
-  right: 20vw;
-  top: 20vh;
-  text-transform: uppercase;
-  font-weight: 700;
+:is(.intro, .textBlock) h1 {
+  font-size: clamp(15px, 5vw, 80px);
+  margin: auto;
   text-align: center;
 }
 
-.intro .logo img {
-  filter: grayscale();
-  margin-top: 1em;
-  width: 20ch;
-}
 .resizer {
   resize: both;
   overflow: hidden;
@@ -526,4 +485,57 @@ a:active {
 
 .example:target {
   display: grid;
+}
+
+.linkOut {
+  display: none;
+}
+.linkOut:target {
+  display: grid;
+}
+
+.linkOut header {
+  text-align: center;
+  font-size:1.1em;
+}
+
+.linkOut header h2 {
+  text-align: center;
+  font-size:1.3em;
+}
+.linkOut header  {
+  background: orange;
+}
+
+.demo {display: none;}
+.demo:target {
+  display:grid;
+}
+.textBlock h2 {
+  font-size:4em;
+}
+
+.textBlock p,li {
+  line-height:1.4;
+
+  font-size:1.4em;
+  margin-bottom:.8em;
+}
+
+.textBlock main {
+  max-width: 1000px;
+}
+
+.textBlock blockquote  {
+  padding: 0; margin: 0;
+}
+.textBlock blockquote p {
+  margin-bottom: 0;
+  font-size:4em;
+}
+
+
+
+.textBlock blockquote {
+
 }

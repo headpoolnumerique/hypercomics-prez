@@ -41,7 +41,7 @@ window.addEventListener('load', function () {
     document.querySelector(`nav a[href*='${window.location.hash}']`).closest('li').classList.add('active')
     }
     else {
-      window.location.hash = "#hypercomics"
+      window.location.hash = "#meanwhile"
     }
 })
 

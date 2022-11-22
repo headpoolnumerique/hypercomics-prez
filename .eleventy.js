@@ -1,78 +1,59 @@
 const slugify = require('slugify')
-const flaxaudio = require("./flaxaudio/"); // For local development
-const classy = require("markdown-it-classy"); 
-const markdownIt = require("markdown-it");
+const flaxaudio = require('./flaxaudio/') // For local development
+const classy = require('markdown-it-classy')
+const markdownIt = require('markdown-it')
 
-
-module.exports = function (eleventyConfig) {
-
+module.exports = function(eleventyConfig) {
   let options = {
     html: true,
     breaks: true,
-    linkify: true
-  };
+    linkify: true,
+  }
 
   // add class to the MD
 
- eleventyConfig.setLibrary("md", markdownIt(options).use(classy));
+  eleventyConfig.setLibrary('md', markdownIt(options).use(classy))
 
-  eleventyConfig.addPassthroughCopy({ "static/css": "/css" });
-  eleventyConfig.addPassthroughCopy({ "static/fonts": "/fonts" });
-  eleventyConfig.addPassthroughCopy({ "static/js": "/js" });
-  eleventyConfig.addPassthroughCopy({ "static/images": "/images" });
-  eleventyConfig.addPassthroughCopy({ "static/videos": "/videos" });
-  eleventyConfig.addPassthroughCopy({ "static/audio": "/audio" });
-
-
-  let filters = `{% import "macros.njk" as macro with context %}`
-
+  eleventyConfig.addPassthroughCopy({ 'static/css': '/css' })
+  eleventyConfig.addPassthroughCopy({ 'static/fonts': '/fonts' })
+  eleventyConfig.addPassthroughCopy({ 'static/js': '/js' })
+  eleventyConfig.addPassthroughCopy({ 'static/images': '/images' })
+  eleventyConfig.addPassthroughCopy({ 'static/videos': '/videos' })
+  eleventyConfig.addPassthroughCopy({ 'static/audio': '/audio' })
 
   eleventyConfig.addPlugin(flaxaudio, {
     path: `/audio/`,
-    audioEl: false
-  });
-
-  
-
-
-  eleventyConfig.addFilter('slugify', function (value) {
-    return slugify(value);
+    audioEl: false,
   })
 
-  eleventyConfig.addFilter('monthYear', function (value) {
-    return date = new Date(value).toLocaleDateString(undefined, {month: 'long', year:'numeric'});
+  // markdownIt options
+  md = new markdownIt({ options })
+
+  eleventyConfig.addFilter('markdownify', function(value) {
+    return md.render(value)
+  })
+  eleventyConfig.addFilter('markdownifyInline', function(value) {
+    return md.renderInline(value)
+  })
+  eleventyConfig.addFilter('slugify', function(value) {
+    return slugify(value)
   })
 
-  eleventyConfig.addCollection("things", collection => {
-    return [...collection.getFilteredByGlob(["src/content/journal/*.md","src/content/intro.md","src/content/talks/*.md", "src/content/demos/*.md"])]
+  eleventyConfig.addFilter('monthYear', function(value) {
+    return (date = new Date(value).toLocaleDateString(undefined, {
+      month: 'long',
+      year: 'numeric',
+    }))
   })
 
-  
-  eleventyConfig.addCollection("demos", collection => {
-    return [...collection.getFilteredByGlob("src/content/demos/*.md")]
+  eleventyConfig.addCollection('prez', (collection) => {
+    return [
+      ...collection.getFilteredByGlob('src/content/prez/*.md').sort((a, b) => {
+         if (a.data.order > b.data.order) return +1;
+        if ( a.data.order < b.data.order) return -1;
+      }),
+    ]
   })
-  eleventyConfig.addCollection("talks", collection => {
-    return [...collection.getFilteredByGlob("src/content/talks/*.md")]
-  })
-
-
-  eleventyConfig.addCollection("prez", collection => {
-    return [...collection.getFilteredByGlob("src/content/prez/*.md")]
-  })
-  eleventyConfig.addCollection("posts", collection => {
-    collection = collection.getFilteredByGlob("src/content/posts/**/*.md");
-    collection.forEach(el => {
-
-      // add macros on the fly to the collection
-    
-      el.template.inputContent = el.template.inputContent.replace('---\n\n', `---\n\n${filters}\n`)
-      el.template.frontMatter.content = `${filters}\n${el.template.frontMatter.content}`
-    })
-
-    return collection;
-  });
-
-
 
   // folder structures
   // -----------------------------------------------------------------------------
@@ -81,17 +62,16 @@ module.exports = function (eleventyConfig) {
   // -----------------------------------------------------------------------------
   return {
     // run the md through the njk engine first to use macro
-    markdownTemplateEngine: "njk",
+    markdownTemplateEngine: 'njk',
     dir: {
-      input: "src",
-      output: "public",
-      includes: "layouts",
-      data: "data",
+      input: 'src',
+      output: 'public',
+      includes: 'layouts',
+      data: 'data',
     },
-  };
-};
-
+  }
+}
 
 function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min
 }

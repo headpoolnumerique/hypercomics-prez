@@ -1,4 +1,5 @@
 ---
+order: 20
 permalink: false
 type: example
 title: Hawkeye

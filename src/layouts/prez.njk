@@ -1,4 +1,3 @@
-
 {% extends "base.njk" %}
 {% block headerSup %}
     <link rel="stylesheet" type="text/css" href="/css/green-audio-player.css">
@@ -9,27 +8,20 @@
 
 {% block content %}
 
-
-    {% for item in collections.prez %}
+    {% for item in collections.prez  %}
       {% if 'example' == item.data.type %}
         {% include "modules/example.njk" %}
-      {% endif %}
 
-
-      {% if 'talk' == item.data.type %}
-        {% include "modules/talk.njk" %}
-      {% endif %}
-
-      {% if 'demo' == item.data.type %}
-        {% include "modules/demo.njk" %}
-      {% endif %}
-
-      {% if 'text' == item.data.type %}
+      {% elif 'text' == item.data.type %}
         {% include "modules/text.njk" %}
-      {% endif %}
 
-      {% if 'journal' == item.data.type %}
-        {% include "modules/dialogue.njk" %}
+      {% elif 'url' == item.data.type %}
+        {% include "modules/url.njk" %}
+
+      {% elif 'demo' == item.data.type %}
+        {% include "modules/demo.njk" %}
+      {% elif 'intro' == item.data.type %}
+        {% include "modules/intro.njk" %}
       {% endif %}
 
     {% endfor %} 

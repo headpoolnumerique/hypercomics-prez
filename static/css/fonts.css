@@ -7,6 +7,13 @@
 }
 
 @font-face {
+  font-family: "recursive";
+  src: url("/fonts/Recursive-VariableFont_CASL,CRSV,MONO,slnt,wght.ttf") format("truetype");
+  font-weight: 300 1000;
+  font-display: swap;
+  font-style: normal  italic;
+}
+@font-face {
   font-family: "Kalam";
   src: url("/fonts/Kalam-Bold.ttf") format("truetype");
   font-weight: 600 ;

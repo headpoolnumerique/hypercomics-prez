@@ -1,13 +1,15 @@
-
-<section id="{{ item.data.title | slugify  }}" class=" talk textBlock">
-  {% include "./prev.njk" %}
-  <main>
-
-  <time>{{ item.data.date | monthYear }}</time>
-  <header>
-    <h2>{{ item.data.title }}</h2>
-  </header>
-  <section>{{item.templateContent | safe}}</section>
-  </main>
-  {% include "./next.njk" %}
+<section id="{{ item.data.title | slugify  }}" class="textBlock">
+    {% include "./prev.njk" %}
+    <main>
+    {% if item.data.hidetitle%}
+      {% else %}
+            <header>
+                <h2>{{ item.data.title }}</h2>
+            </header>
+        {% endif %}
+        <section>
+            {{ item.templateContent | safe }}
+        </section>
+    </main>
+    {% include "./next.njk" %}
 </section>

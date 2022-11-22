@@ -1,5 +1,6 @@
 ---
 permalink: false
+order: 30
 type: example
 title: Nightwing
 authors: 
@@ -9,3 +10,6 @@ publisher: DC Comics
 assets: 
   - nightwing.jpeg
 ---
+
+
+

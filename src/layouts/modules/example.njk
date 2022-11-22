@@ -2,7 +2,7 @@
 <section id="{{ item.data.title | slugify  }}" class="example">
 {% include "./prev.njk" %}
 <header>
-<h1>{{item.data.title}}</h1>
+<h3>{{item.data.title}}</h3>
 <ul clas="authors">
 {% for author in item.data.authors  %}
   <li>{{author}}</li>

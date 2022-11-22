@@ -1,5 +1,5 @@
 ---
 title: hypercomics
-layout: homepage
+layout: prez
 permalink: /index.html
 ---
