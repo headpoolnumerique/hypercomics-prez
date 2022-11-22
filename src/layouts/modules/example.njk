@@ -1,0 +1,18 @@
+
+<section id="{{ item.data.title | slugify  }}" class="example">
+{% include "./prev.njk" %}
+<header>
+<h1>{{item.data.title}}</h1>
+<ul clas="authors">
+{% for author in item.data.authors  %}
+  <li>{{author}}</li>
+{% endfor %}
+</ul>
+</header>
+<figure>
+{% for asset in item.data.assets %}
+  <img src="{{"/images/" | url}}{{asset}}" alt="" />
+{% endfor %}
+</figure>
+{% include "./next.njk" %}
+</section>

@@ -1,0 +1,18 @@
+<section class="menubar">
+<nav>
+<ul>
+{% for item in collections.prez %}
+  <li  {% if item.data.type == "intro" %} class="active" {% endif %} > 
+  <a href="#{{item.data.title | slugify}}">
+  
+  {% if item.data.type == "example" %}
+    {% include "../icons/iconText.njk" %}
+  {% endif %}
+
+  <span class="menuTitle">{{item.data.title}}</span>
+  </a> 
+  </li>
+{% endfor %}
+</ul>
+</nav>
+</section>

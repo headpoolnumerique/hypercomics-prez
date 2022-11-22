@@ -1,0 +1,14 @@
+
+
+
+<p><span class="">{{item.data.type}}</span></p>
+<ul clas="authors">
+{% for author in item.data.authors  %}
+  <li>{{author}}</li>
+{% endfor %}
+</ul>
+
+{{item.templateContent | safe}}
+</main>
+{% include "./next.njk" %}
+</section>

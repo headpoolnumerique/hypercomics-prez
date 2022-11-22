@@ -1,0 +1,21 @@
+{
+  "name": "content",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "homepage": "https://headpoolnumerique/.github.io/hypercomics.org",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "@sindresorhus/slugify": "^1.1.2",
+    "markdown-it": "^12.3.2",
+    "markdown-it-classy": "^0.2.0"
+  }
+}
