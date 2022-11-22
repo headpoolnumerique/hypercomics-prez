@@ -48,7 +48,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection('prez', (collection) => {
     return [
-      ...collection.getFilteredByGlob('src/content/prez/*.md').sort((a, b) => {
+      ...collection.getFilteredByGlob('src/content/prez/**/*.md').sort((a, b) => {
          if (a.data.order > b.data.order) return +1;
         if ( a.data.order < b.data.order) return -1;
       }),
