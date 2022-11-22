@@ -140,7 +140,7 @@ h4 {
 .talk {
   /* background: red; */
   display: grid;
-  grid-template-columns: repeat(24, calc(100vw / 25));
+  grid-template-columns: repeat(24, calc(100vw / 31));
   grid-template-rows: repeat(24, calc((90vh) / 25));
 }
 .talk time {
