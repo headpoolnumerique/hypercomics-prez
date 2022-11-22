@@ -4,7 +4,7 @@
         {% if item.data.hidetitle %}
         {% else %}
             <header>
-                <h2>{{ item.data.title }}</h2>
+                <h2>{{ item.data.title | markdownifyInline | safe }}</h2>
             </header>
         {% endif %}
         <section>

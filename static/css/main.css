@@ -31,6 +31,9 @@ body {
   font-variation-settings: 'wght' 400, 'CASL' 1; /* font-weight: 800; */
 }
 
+.content > section {
+  padding: 0 10vw;
+}
 h1,
 h2,
 h3 {
@@ -309,7 +312,7 @@ a:active {
 }
 
 :is(.intro, .textBlock) h1 {
-  font-size: clamp(15px, 5vw, 80px);
+  font-size: clamp(15px, 4em , 100px);
   margin: auto;
   text-align: center;
 }
@@ -496,46 +499,55 @@ a:active {
 
 .linkOut header {
   text-align: center;
-  font-size:1.1em;
+  font-size: 1.1em;
 }
 
 .linkOut header h2 {
   text-align: center;
-  font-size:1.3em;
+  font-size: 1.3em;
 }
-.linkOut header  {
+.linkOut header {
   background: orange;
 }
 
-.demo {display: none;}
+.demo {
+  display: none;
+}
 .demo:target {
-  display:grid;
+  display: grid;
 }
 .textBlock h2 {
-  font-size:4em;
+  font-size: 4em;
 }
 
-.textBlock p,li {
-  line-height:1.4;
+.textBlock p,
+li {
+  line-height: 1.4;
 
-  font-size:1.4em;
-  margin-bottom:.8em;
+  font-size: 1.4em;
+  margin-bottom: 0.8em;
 }
 
 .textBlock main {
   max-width: 1000px;
 }
 
-.textBlock blockquote  {
-  padding: 0; margin: 0;
+.textBlock blockquote {
+  padding: 0;
+  margin: 0;
 }
 .textBlock blockquote p {
   margin-bottom: 0;
-  font-size:4em;
+  font-size: 4em;
 }
-
-
 
 .textBlock blockquote {
-
+  font-size:1.2em;
+  color: red;
 }
+
+hr {
+  margin: 3em auto;
+  width: 50%;
+  text-align: center;
+} 
