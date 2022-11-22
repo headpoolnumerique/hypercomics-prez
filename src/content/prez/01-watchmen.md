@@ -1,5 +1,4 @@
 ---
-
 permalink: false
 type: example
 title: Watchmen
