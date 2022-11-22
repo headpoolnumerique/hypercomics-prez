@@ -1,8 +1,8 @@
 <section id="{{ item.data.title | slugify  }}" class="textBlock">
     {% include "./prev.njk" %}
     <main>
-    {% if item.data.hidetitle%}
-      {% else %}
+        {% if item.data.hidetitle %}
+        {% else %}
             <header>
                 <h2>{{ item.data.title }}</h2>
             </header>
